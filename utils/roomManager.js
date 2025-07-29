@@ -55,9 +55,7 @@ function winner(sender, payload) {
   const room = rooms[sender.roomId];
   if (room) {
     room.players.forEach((player) => {
-      if (player !== sender) {
-        player.send(JSON.stringify({ type: 'WINNER', from: sender.id, payload }));
-      }
+      player.send(JSON.stringify({ type: 'WINNER', roomId: sender.roomId, payload }));
     });
   }
 }
